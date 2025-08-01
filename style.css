@@ -1,35 +1,132 @@
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f7f7f7;
-  color: #333;
+    background: linear-gradient(180deg, #1C1C1C, #2E2E2E, #3C3C3C, #525252);
+    background-attachment: fixed;
+    color: #E0E0E0;
 }
 
-header {
-  background: #222;
-  color: white;
-  padding: 2rem;
-  text-align: center;
+.navbar{
+    background-color: #0D0D0D;
+    border-bottom: 3px solid #E0E0E0;
 }
 
-nav a {
-  color: #90ee90;
-  margin: 0 1rem;
-  text-decoration: none;
+.navbar-brand{
+    color: #E0E0E0;
 }
 
-main {
-  padding: 2rem;
+.navbar-brand:hover{
+    color:#E0E0E0;
 }
 
-section {
-  margin-bottom: 3rem;
+/* Change the color of the navbar links */
+.navbar .nav-link {
+    color: #E0E0E0;  /* Light gray text color */
 }
 
-footer {
-  text-align: center;
-  padding: 1rem;
-  background: #eee;
-  font-size: 0.9rem;
+/* Change the color of the navbar links when hovered */
+.navbar .nav-link:hover {
+    color: #47d459;  /* Bright blue when hovered */
+}
+
+.code-font {
+    font-family: "Source Code Pro", monospace;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.kanit-regular {
+    font-family: "Kanit", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.symbol {
+    color: #11e02d; /* Change to any color you like */
+    font-weight: bold; /* Optional: Make it bold */
+}
+
+.normal-div{
+    background-color: white;
+    border: 2px solid  #E0E0E0;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}
+
+#header-div{
+    width: 25%;
+    height:25%;
+}
+
+#main-container{
+    background-color: dimgray;
+}
+
+#profile-div{
+    background: #0D0D0D;
+    width: 150%;
+}
+
+#profile-circle{
+    border: 5px solid #fff;
+}
+
+.social-icon {
+    font-size: 3vw; /* Font size of the icon */
+    transition: transform 0.3s ease; /* Smooth transition for moving up */
+    color: #E0E0E0;
+}
+
+.social-icon:hover {
+    transform: translateY(-10px); /* Move the icon 10px up on hover */
+    color: #47d459;  /* Bright blue when hovered */
+}
+
+.skull-img{
+    width:50%;
+    height: auto; 
+    object-fit: cover;
+}
+
+.element-img{
+    width:50%;
+    height: auto; 
+    object-fit: cover;
+}
+
+@keyframes floatAnimation1 {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(15%); } /* Move down */
+    100% { transform: translateY(0); } /* Move back to original position */
+}
+
+@keyframes floatAnimation2{
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15%); } /* Move up */
+    100% { transform: translateY(0); } /* Move back to original position */
+}
+
+.animated-gif-1{
+    animation: floatAnimation1 5s ease-in-out infinite;
+}
+
+.animated-gif-2{
+    animation: floatAnimation2 5s ease-in-out infinite;
+}
+
+/* Differences in other resolutions */
+@media (max-width: 768px) { /* Tablets */
+    .skull-img{
+        width:25%;
+        height: auto; 
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 480px) { /* Mobile devices */
+    .skull-img{
+        display: none;
+        /* width:50%;
+        height: auto; 
+        object-fit: cover; */
+    }
 }
