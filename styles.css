@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(180deg, #1C1C1C, #2E2E2E, #3C3C3C, #525252);
+    background: linear-gradient(180deg, #1C1C1C, #2E2E2E, #3C3C3C, #525252) !important;
     background-attachment: fixed;
     color: #E0E0E0;
 }
