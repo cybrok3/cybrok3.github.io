@@ -135,7 +135,7 @@ body, html {
 
 /* Main Content Scroll Area */
 .content-area {
-  width: 750px;
+  width: 800px;
   flex-grow: 1rem;
   overflow-y: auto;
   background-color: #181818;
