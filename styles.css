@@ -138,6 +138,15 @@ body, html {
   margin-right: 10rem;
 }
 
+.content-area img.banner {
+  width: calc(100% + 20rem); /* 100% + left(10rem) + right(10rem) */
+  margin-left: -10rem;        /* shift left */
+  margin-right: -10rem;       /* shift right to fill */
+  display: block;             /* remove inline spacing */
+  height: auto;               /* keep aspect ratio */
+  object-fit: cover;          /* optional: crop nicely if needed */
+}
+
 :root {
   font-size: 100%; /* or 16px */
 }
