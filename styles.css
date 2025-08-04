@@ -132,7 +132,26 @@ body, html {
 .content-area {
   flex-grow: 1;
   overflow-y: auto;
-  padding: 20px;
+  background-color: white;
+  margin-left: 10rem;
+  margin-right: 10rem;
+}
+
+:root {
+  font-size: 100%; /* or 16px */
+}
+
+.content-area h1 {
+  font-size: 2rem;
+}
+
+.content-area h2 {
+  font-size: 1.5rem;
+}
+
+.content-area p, .content-area .lead {
+  font-size: 1.125rem;
+  line-height: 1.6;
 }
 
 /* Typography */
