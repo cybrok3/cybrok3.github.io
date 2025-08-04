@@ -52,8 +52,11 @@ body, html {
 .sidebar img.rounded-circle {
   width: 80px;
   height: 80px;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
+  border-radius: 50%;
   border: 3px solid #E0E0E0;
+  flex-shrink: 0;
 }
 
 .sidebar h2.kanit-regular {
@@ -95,6 +98,12 @@ body, html {
 }
 
 .sidebar .nav-link svg {
+  flex-shrink: 0;
+  width: 25px;
+  height: 25px;
+}
+
+.sidebar svg{
   flex-shrink: 0;
   width: 25px;
   height: 25px;
