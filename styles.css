@@ -84,16 +84,40 @@ body, html {
 }
 
 .sidebar .nav-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
   width: 100%;
   color: #E0E0E0;
   font-size: 1.25rem;
   padding: 0.75rem 1rem;
   border-radius: 8px;
   text-decoration: none;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  padding-left: 0; /* keep your original */
+  transition: color 0.3s ease, transform 0.3s ease;
+  padding-left: 1rem;
 }
+
+.sidebar .nav-link svg {
+  flex-shrink: 0;
+  width: 25px;
+  height: 25px;
+}
+
+/* #home-icon{
+  width: 25px;
+  height: 25px;
+}
+
+#about-me-icon {
+  width: 25px;
+  height: 25px;
+}
+
+#my-projects-icon {
+  width: 25px;
+  height: 25px;
+} */
 
 .sidebar .nav-link:focus {
     color: #47d459;
@@ -101,7 +125,7 @@ body, html {
 
 .sidebar .nav-link:hover {
   color: #47d459;
-  background-color: rgba(71, 212, 89, 0.15);
+  transform: translateX(20px);
 }
 
 /* Main Content Scroll Area */
@@ -148,8 +172,9 @@ body, html {
 }
 
 .social-icon {
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
+  font-size: 1.5rem;
+  /* transition: transform 0.3s ease; */
+  transition: color 0.3s ease, transform 0.3s ease;
   color: #E0E0E0;
 }
 
