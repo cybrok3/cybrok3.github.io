@@ -133,6 +133,11 @@ body, html {
   transform: translateX(20px);
 }
 
+.sidebar .nav-link.active{
+  color: #47d459;
+  transform: translateX(20px);
+}
+
 /* Main Content Scroll Area */
 .content-area {
   width: 800px;
