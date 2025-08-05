@@ -102,7 +102,7 @@
             </p>
             <p>
               Here as the sidebar spoils, I post creative stuff I do, such as 
-              projects I've made, music I write, or even sketches I do. Also I upload blogs about expla silly little ideas that come 
+              projects I've made, music I write, or even sketches I do. Also I upload blogs about silly little ideas that come 
               to mind, something like diary type of blogs.
             </p>
           </div>
@@ -119,6 +119,31 @@
 
   <!-- Bootstrap Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!--Firebase SDK's-->
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDWW-0-8sdf4J4aY0tmHPVwaJA9oae8RI8",
+    authDomain: "nerdspace-491e9.firebaseapp.com",
+    projectId: "nerdspace-491e9",
+    storageBucket: "nerdspace-491e9.firebasestorage.app",
+    messagingSenderId: "413389786915",
+    appId: "1:413389786915:web:ea4d7f30cfb7255ac74696",
+    measurementId: "G-0YPNMS7M7X"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 
 </body>
 </html>
