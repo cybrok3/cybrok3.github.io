@@ -256,7 +256,7 @@ footer {
   position: absolute;
   width: 24px;
   height: 24px;
-  background-image: url('resources/animated_gifs/pixel-heart.gif'); /* or .png */
+  background-image: url('resources/animated_gifs/pixel-heart.png'); /* or .png */
   background-size: contain;
   background-repeat: no-repeat;
   animation: floatUp 1s ease-out forwards;
