@@ -91,7 +91,16 @@
         </div>
       </section>
 
-      <audio id="audio-player" controls></audio>
+      <div id="playerUI">
+        <div id="trackInfo"></div>
+        <button id="playPauseBtn">▶️</button>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.8">
+        <div id="progressContainer">
+          <span id="currentTime">0:00</span>
+          <input type="range" id="progressBar" min="0" max="100" step="1" value="0">
+          <span id="duration">0:00</span>
+        </div>
+      </div>
 
       <!-- About Me Section -->
       <section id="about-me-section" class="container my-5">
