@@ -1,5 +1,3 @@
-// /api/play.js
-
 export default async function handler(req, res) {
   const allowedOrigins = [
     "https://cybrok3.github.io",
@@ -16,6 +14,10 @@ export default async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(200).end();
 
   const { device_id } = req.query;
+
+  if (!device_id) {
+    return res.status(400).json({ error: 'Missing device_id' });
+  }
 
   const clientId = process.env.SPOTIFY_CLIENT_ID;
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
@@ -40,10 +42,28 @@ export default async function handler(req, res) {
     const tokenData = await tokenRes.json();
     const accessToken = tokenData.access_token;
 
-    // 2. Choose a track URI (or get a random one)
-    const trackUri = "spotify:track:3KkXRkHbMCARz0aVfEt68P"; // Use your own logic here if needed
+    // 2. Fetch tracks from your playlist
+    const playlistId = process.env.SPOTIFY_VIVES_PLAYLIST_ID;
+    const playlistResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
 
-    // 3. Call Spotify API to play
+    const playlistData = await playlistResponse.json();
+
+    if (!playlistData.items || playlistData.items.length === 0) {
+      return res.status(500).json({ error: 'No tracks found in playlist.' });
+    }
+
+    // 3. Pick a random track from playlist
+    const tracks = playlistData.items;
+    const randomIndex = Math.floor(Math.random() * tracks.length);
+    const randomTrack = tracks[randomIndex]?.track;
+
+    if (!randomTrack || !randomTrack.uri) {
+      return res.status(500).json({ error: 'No track found at random index.' });
+    }
+
+    // 4. Play the random track on the device
     const playRes = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
       method: "PUT",
       headers: {
@@ -51,12 +71,12 @@ export default async function handler(req, res) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        uris: [trackUri]
+        uris: [randomTrack.uri]
       })
     });
 
     if (playRes.status === 204) {
-      res.status(200).json({ message: "Playback started" });
+      res.status(200).json({ message: `Playing ${randomTrack.name}` });
     } else {
       const errorData = await playRes.json();
       res.status(playRes.status).json({ error: errorData });
