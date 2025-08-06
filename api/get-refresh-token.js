@@ -2,7 +2,7 @@
   const clientId = '4f43778705934342ad54cd649d296d20';
   const clientSecret = '838e83cb56f54d68b8a4d41584266ea1';
   const redirectUri = 'https://cybrok3.github.io/callback';
-  const authCode = 'AQCqMCRmPZUOukfcGS3mBXjy3QpeK1c-BjZ_zC8Cn6yLpFscfUv1VwwMY4ZasJMtQ0ez_t-z8Oi19k9P_JVaULnYyR6OGpOcUYaWZK7oWM6e7nMAEbAcf1SDBmb1E8mVIKppiHw_apQ1LaX_qHDRzijamIlfq5k1DYzy4F0OAHuUmX1uFAbYnIgMy-slG_h94EVkb69mRiLB04dNYQ';
+  const authCode = 'AQC-y26eB2O4QXmbmvaDNxiE7VFyGOU2hH6UADFNu_dT0oYdH9m1sb1v_X0imEUqTW01QaS9VGD6vZluBG3kptGUmCwXeAbIHoPlM_0PpQRtNf7P2s-gxipZTn5m1IsmnVL6X21TmR8E8zB6znc1KFkGJzbSQJoCRRxSRFa4_QCO2jmNT4DTH80lV-cpFHiWnemFc1kjjAc8okTckV_UY5hXvxR4Kjpl1U04Db-N1sZ_lM2QuIpruiFDzW2dr6evrN_0DO09ZVDDLtXv1hXyFLo';
   async function getTokens() {
     console.log('Starting token request...');
     try {
