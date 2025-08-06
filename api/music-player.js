@@ -1,3 +1,7 @@
+/**
+ * Creates a player, connects it with spotify api, and is responsible for the functionality of the music player
+ */
+
 let player;
 let isPaused = true;
 let currentTrackDuration = 0;
@@ -9,29 +13,40 @@ function formatMs(ms) {
   return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
 
-window.onSpotifyWebPlaybackSDKReady = () => {
+// This class returns a browser player which is authenticated via the refresh-token API handler in vercel.
+window.onSpotifyWebPlaybackSDKReady = async() => {
+
+  // Get the access token ONCE
+  const tokenResponse = await fetch('https://nerdspace-indol.vercel.app/api/refresh-token');
+  const tokenData = await tokenResponse.json();
+  accessToken = tokenData.access_token;
+
   player = new Spotify.Player({
     name: 'My Web Player',
-    getOAuthToken: cb => {
-      fetch('https://nerdspace-indol.vercel.app/api/refresh-token')
-        .then(res => res.json())
-        .then(data => cb(data.access_token));
-    },
-    volume: 0.8
+    getOAuthToken: cb => cb(accessToken),
+    volume: 0.5
   });
 
+  // Once player is connected, it gets a device_id assigned
   player.addListener('ready', async ({ device_id }) => {
-    console.log('Ready with Device ID', device_id);
+    console.log('Ready with Device ID');
     deviceId = device_id;
 
     // Call your /api/play endpoint with the device_id to start random track playback
     try {
-      const playResponse = await fetch(`https://nerdspace-indol.vercel.app/api/play?device_id=${deviceId}`);
+      const playResponse = await fetch(`https://nerdspace-indol.vercel.app/api/play?device_id=${deviceId}`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        }
+      });
+
+       const result = await playResponse.json();
+      
       if (!playResponse.ok) {
-        const error = await playResponse.json();
         console.error('Playback error:', error);
       } else {
-        const result = await playResponse.json();
         console.log('Playback started:', result.message);
       }
     } catch (error) {
@@ -68,14 +83,14 @@ document.getElementById('playPauseBtn').addEventListener('click', () => {
   }
 });
 
-// 🔊 Volume control
+// Volume control
 document.getElementById('volumeSlider').addEventListener('input', (e) => {
   if (!player) return;
 
   player.setVolume(parseFloat(e.target.value));
 });
 
-// ⏱️ Progress bar (read-only for now)
+// Progress bar (read-only for now)
 setInterval(async () => {
   if (!player) return;
 

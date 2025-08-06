@@ -1,4 +1,6 @@
 export default async function handler(req, res) {
+
+  // Allow requests from your frontend (CORS setup).
   const allowedOrigins = [
     "https://cybrok3.github.io",
     "http://localhost/cybrok3.github.io"
@@ -14,35 +16,25 @@ export default async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(200).end();
 
   const { device_id } = req.query;
+  const authHeader = req.headers.authorization;
 
   if (!device_id) {
     return res.status(400).json({ error: 'Missing device_id' });
   }
 
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ error: "Missing or invalid Authorization header" });
+  }
+
+  const accessToken = authHeader.replace("Bearer ", "");  
+
   const clientId = process.env.SPOTIFY_CLIENT_ID;
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
   const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
 
-  const basicAuth = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
-
   try {
-    // 1. Refresh token to get access token
-    const tokenRes = await fetch("https://accounts.spotify.com/api/token", {
-      method: "POST",
-      headers: {
-        Authorization: `Basic ${basicAuth}`,
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: new URLSearchParams({
-        grant_type: "refresh_token",
-        refresh_token: refreshToken
-      })
-    });
 
-    const tokenData = await tokenRes.json();
-    const accessToken = tokenData.access_token;
-
-    // 2. Fetch tracks from your playlist
+    // Fetch tracks from your playlist
     const playlistId = process.env.SPOTIFY_VIVES_PLAYLIST_ID;
     const playlistResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
       headers: { Authorization: `Bearer ${accessToken}` },
@@ -54,7 +46,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'No tracks found in playlist.' });
     }
 
-    // 3. Pick a random track from playlist
+    // Pick a random track from playlist
     const tracks = playlistData.items;
     const randomIndex = Math.floor(Math.random() * tracks.length);
     const randomTrack = tracks[randomIndex]?.track;
@@ -63,7 +55,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'No track found at random index.' });
     }
 
-    // 4. Play the random track on the device
+    // Play the random track on the device
     const playRes = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
       method: "PUT",
       headers: {
