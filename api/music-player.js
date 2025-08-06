@@ -28,7 +28,7 @@ window.onSpotifyWebPlaybackSDKReady = async () => {
 // Function to play a track using Spotify API
 async function playRandomTrack(deviceId, token) {
   // Get a random track from your backend
-  const res = await fetch('https://your-vercel-project.vercel.app/api/random-track');
+  const res = await fetch('https://nerdspace-indol.vercel.app/api/random-track');
   const data = await res.json();
 
   if (!data || !data.url) {
