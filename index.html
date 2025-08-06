@@ -91,24 +91,39 @@
         </div>
       </section>
 
-      <iframe 
-        src="https://open.spotify.com/embed/playlist/{playlist_id}" 
-        width="300" 
-        height="380" 
-        frameborder="0" 
-        allowtransparency="true" 
-        allow="encrypted-media">
-      </iframe>
+      <button id="playRandom">Play Random Preview</button>
+      <div id="trackInfo"></div>
+      <audio id="audioPlayer" controls></audio>
 
       <script>
-        fetch('https://nerdspace-indol.vercel.app/api/random-track')
-          .then(res => res.json())
-          .then(data => {
-            const trackId = data.id; // adjust based on actual JSON structure
-            const embedUrl = `https://open.spotify.com/embed/track/${trackId}`;
-            document.getElementById('spotify-player').src = embedUrl;
-          })
-          .catch(console.error);
+        const playBtn = document.getElementById('playRandom');
+        const audio = document.getElementById('audioPlayer');
+        const info = document.getElementById('trackInfo');
+
+        playBtn.addEventListener('click', async () => {
+          try {
+            const res = await fetch('https://nerdspace-indol.vercel.app/api/random-track');
+            if (!res.ok) throw new Error('Failed to get track');
+
+            const data = await res.json();
+
+            if (!data.preview_url) {
+              info.textContent = 'No preview available for this track.';
+              audio.src = '';
+              return;
+            }
+
+            // Set audio source to preview url
+            audio.src = data.preview_url;
+            audio.play();
+
+            // Show track details
+            info.textContent = `Playing: "${data.name}" by ${data.artists.map(a => a.name).join(', ')}`;
+          } catch (e) {
+            info.textContent = 'Error loading track preview.';
+            console.error(e);
+          }
+        });
       </script>
 
       <!-- About Me Section -->
