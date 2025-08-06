@@ -19,10 +19,14 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     volume: 0.8
   });
 
+  // Error handling
+  player.addListener('initialization_error', ({ message }) => console.error('Initialization Error:', message));
+  player.addListener('authentication_error', ({ message }) => console.error('Authentication Error:', message));
+  player.addListener('account_error', ({ message }) => console.error('Account Error:', message));
+  player.addListener('playback_error', ({ message }) => console.error('Playback Error:', message));
+
   player.addListener('ready', ({ device_id }) => {
     console.log('Ready with Device ID', device_id);
-
-    // Auto play something from backend (optional)
     fetch(`https://nerdspace-indol.vercel.app/api/play?device_id=${device_id}`);
   });
 
@@ -44,28 +48,30 @@ window.onSpotifyWebPlaybackSDKReady = () => {
   player.connect();
 };
 
-// Toggle play/pause
-document.getElementById('playPauseBtn').addEventListener('click', () => {
-  if (isPaused) {
-    player.resume();
-  } else {
-    player.pause();
-  }
+document.addEventListener('DOMContentLoaded', () => {
+  // Toggle play/pause
+  document.getElementById('playPauseBtn').addEventListener('click', () => {
+    if (isPaused) {
+      player.resume();
+    } else {
+      player.pause();
+    }
+  });
+
+  // Volume control
+  document.getElementById('volumeSlider').addEventListener('input', (e) => {
+    player.setVolume(parseFloat(e.target.value));
+  });
+
+  // Progress bar update
+  setInterval(async () => {
+    if (!player) return;
+
+    const state = await player.getCurrentState();
+    if (!state) return;
+
+    const position = state.position;
+    document.getElementById('progressBar').value = (position / currentTrackDuration) * 100;
+    document.getElementById('currentTime').textContent = formatMs(position);
+  }, 1000);
 });
-
-// 🔊 Volume control
-document.getElementById('volumeSlider').addEventListener('input', (e) => {
-  player.setVolume(parseFloat(e.target.value));
-});
-
-// ⏱️ Progress bar (read-only for now)
-setInterval(async () => {
-  if (!player) return;
-
-  const state = await player.getCurrentState();
-  if (!state) return;
-
-  const position = state.position;
-  document.getElementById('progressBar').value = (position / currentTrackDuration) * 100;
-  document.getElementById('currentTime').textContent = formatMs(position);
-}, 1000);
