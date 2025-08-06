@@ -12,7 +12,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
   player = new Spotify.Player({
     name: 'My Web Player',
     getOAuthToken: cb => {
-      fetch('https://your-vercel-project.vercel.app/api/refresh-token') // Update this to your actual endpoint
+      fetch('https://nerdspace-indol.vercel.app/api/refresh-token')
         .then(res => res.json())
         .then(data => cb(data.access_token));
     },
@@ -23,7 +23,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     console.log('Ready with Device ID', device_id);
 
     // Auto play something from backend (optional)
-    fetch(`https://your-vercel-project.vercel.app/api/play?device_id=${device_id}`); 
+    fetch(`https://nerdspace-indol.vercel.app/api/play?device_id=${device_id}`); 
   });
 
   player.addListener('player_state_changed', state => {
