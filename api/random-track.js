@@ -1,4 +1,23 @@
 export default async function handler(req, res) {
+  // Set CORS headers
+  const allowedOrigins = [
+    "https://cybrok3.github.io",
+    "http://localhost/cybrok3.github.io",
+  ];
+  
+  const origin = req.headers.origin;
+
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+
+  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   const clientId = process.env.SPOTIFY_CLIENT_ID;
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
   const playlistId = process.env.SPOTIFY_VIVES_PLAYLIST_ID;
