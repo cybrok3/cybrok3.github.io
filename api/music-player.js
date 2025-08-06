@@ -1,6 +1,7 @@
 let player;
 let isPaused = true;
 let currentTrackDuration = 0;
+let deviceId = null;
 
 function formatMs(ms) {
   const minutes = Math.floor(ms / 60000);
@@ -19,15 +20,23 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     volume: 0.8
   });
 
-  // Error handling
-  player.addListener('initialization_error', ({ message }) => console.error('Initialization Error:', message));
-  player.addListener('authentication_error', ({ message }) => console.error('Authentication Error:', message));
-  player.addListener('account_error', ({ message }) => console.error('Account Error:', message));
-  player.addListener('playback_error', ({ message }) => console.error('Playback Error:', message));
-
-  player.addListener('ready', ({ device_id }) => {
+  player.addListener('ready', async ({ device_id }) => {
     console.log('Ready with Device ID', device_id);
-    fetch(`https://nerdspace-indol.vercel.app/api/play?device_id=${device_id}`);
+    deviceId = device_id;
+
+    // Call your /api/play endpoint with the device_id to start random track playback
+    try {
+      const playResponse = await fetch(`https://nerdspace-indol.vercel.app/api/play?device_id=${deviceId}`);
+      if (!playResponse.ok) {
+        const error = await playResponse.json();
+        console.error('Playback error:', error);
+      } else {
+        const result = await playResponse.json();
+        console.log('Playback started:', result.message);
+      }
+    } catch (error) {
+      console.error('Error calling play API:', error);
+    }
   });
 
   player.addListener('player_state_changed', state => {
@@ -48,30 +57,32 @@ window.onSpotifyWebPlaybackSDKReady = () => {
   player.connect();
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Toggle play/pause
-  document.getElementById('playPauseBtn').addEventListener('click', () => {
-    if (isPaused) {
-      player.resume();
-    } else {
-      player.pause();
-    }
-  });
+// Toggle play/pause
+document.getElementById('playPauseBtn').addEventListener('click', () => {
+  if (!player) return;
 
-  // Volume control
-  document.getElementById('volumeSlider').addEventListener('input', (e) => {
-    player.setVolume(parseFloat(e.target.value));
-  });
-
-  // Progress bar update
-  setInterval(async () => {
-    if (!player) return;
-
-    const state = await player.getCurrentState();
-    if (!state) return;
-
-    const position = state.position;
-    document.getElementById('progressBar').value = (position / currentTrackDuration) * 100;
-    document.getElementById('currentTime').textContent = formatMs(position);
-  }, 1000);
+  if (isPaused) {
+    player.resume();
+  } else {
+    player.pause();
+  }
 });
+
+// 🔊 Volume control
+document.getElementById('volumeSlider').addEventListener('input', (e) => {
+  if (!player) return;
+
+  player.setVolume(parseFloat(e.target.value));
+});
+
+// ⏱️ Progress bar (read-only for now)
+setInterval(async () => {
+  if (!player) return;
+
+  const state = await player.getCurrentState();
+  if (!state) return;
+
+  const position = state.position;
+  document.getElementById('progressBar').value = (position / currentTrackDuration) * 100;
+  document.getElementById('currentTime').textContent = formatMs(position);
+}, 1000);
