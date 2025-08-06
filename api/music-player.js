@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     async function playRandomTrack() {
         try {
-            const response = await fetch('/api/random-track');
+            const response = await fetch('https://nerdspace-indol.vercel.app/api/random-track');
             if (!response.ok) throw new Error('Failed to fetch track');
 
             const track = await response.json();
