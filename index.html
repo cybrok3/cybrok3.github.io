@@ -95,36 +95,38 @@
       <div id="trackInfo"></div>
       <audio id="audioPlayer" controls></audio>
 
-      <script>
-        const playBtn = document.getElementById('playRandom');
-        const audio = document.getElementById('audioPlayer');
-        const info = document.getElementById('trackInfo');
+      // <script>
+      //   const playBtn = document.getElementById('playRandom');
+      //   const audio = document.getElementById('audioPlayer');
+      //   const info = document.getElementById('trackInfo');
 
-        playBtn.addEventListener('click', async () => {
-          try {
-            const res = await fetch('https://nerdspace-indol.vercel.app/api/random-track');
-            if (!res.ok) throw new Error('Failed to get track');
+      //   playBtn.addEventListener('click', async () => {
+      //     try {
+      //       const res = await fetch('https://nerdspace-indol.vercel.app/api/random-track');
+      //       if (!res.ok) throw new Error('Failed to get track');
 
-            const data = await res.json();
+      //       const data = await res.json();
 
-            if (!data.preview_url) {
-              info.textContent = 'No preview available for this track.';
-              audio.src = '';
-              return;
-            }
+      //       if (!data.preview_url) {
+      //         info.textContent = 'No preview available for this track.';
+      //         audio.src = '';
+      //         return;
+      //       }
 
-            // Set audio source to preview url
-            audio.src = data.preview_url;
-            audio.play();
+      //       // Set audio source to preview url
+      //       audio.src = data.preview_url;
+      //       audio.play();
 
-            // Show track details
-            info.textContent = `Playing: "${data.name}" by ${data.artists.map(a => a.name).join(', ')}`;
-          } catch (e) {
-            info.textContent = 'Error loading track preview.';
-            console.error(e);
-          }
-        });
-      </script>
+      //       // Show track details
+      //       info.textContent = `Playing: "${data.name}" by ${data.artists.map(a => a.name).join(', ')}`;
+      //     } catch (e) {
+      //       info.textContent = 'Error loading track preview.';
+      //       console.error(e);
+      //     }
+      //   });
+      // </script>
+
+      <audio id="audio-player" controls></audio>
 
       <!-- About Me Section -->
       <section id="about-me-section" class="container my-5">
@@ -207,6 +209,7 @@
     </script>
 
   <script src="Js/navbar.js"></script>
+  <script src="Js/music-player.js"></script>
   <script type="module" src="Js/test-db.js"></script>
 </body>
 </html>
