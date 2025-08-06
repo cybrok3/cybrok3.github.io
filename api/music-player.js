@@ -1,34 +1,55 @@
-document.addEventListener("DOMContentLoaded", () => {
-    async function playRandomTrack() {
-        try {
-            const response = await fetch('https://nerdspace-indol.vercel.app/api/random-track');
-            if (!response.ok) throw new Error('Failed to fetch track');
+window.onSpotifyWebPlaybackSDKReady = async () => {
+  // Fetch access token from your backend
+  const res = await fetch('https://your-vercel-project.vercel.app/api/refresh-token');
+  const { access_token } = await res.json();
 
-            const track = await response.json();
-            const audioUrl = track.preview_url || track.stream_url;
+  const player = new Spotify.Player({
+    name: 'Web Playback SDK Player',
+    getOAuthToken: cb => cb(access_token),
+    volume: 0.5
+  });
 
-            if (!audioUrl) {
-            console.error('No playable URL found in track');
-            return;
-            }
+  // Connect to the player
+  player.connect();
 
-            const audio = document.getElementById('audio-player');
-            audio.src = audioUrl;
+  // Listen for ready event
+  player.addListener('ready', ({ device_id }) => {
+    console.log('Ready with Device ID', device_id);
+    playRandomTrack(device_id, access_token);
+  });
 
-            // Wait for audio metadata to load before playing
-            audio.onloadedmetadata = () => {
-            audio.play().catch(err => {
-                console.warn('Auto-play was prevented:', err);
-            });
-            };
+  // Error handling (optional)
+  player.addListener('initialization_error', ({ message }) => console.error(message));
+  player.addListener('authentication_error', ({ message }) => console.error(message));
+  player.addListener('account_error', ({ message }) => console.error(message));
+  player.addListener('playback_error', ({ message }) => console.error(message));
+};
 
-        } catch (error) {
-            console.error('Error playing track:', error);
-        }
-    }
+// Function to play a track using Spotify API
+async function playRandomTrack(deviceId, token) {
+  // Get a random track from your backend
+  const res = await fetch('https://your-vercel-project.vercel.app/api/random-track');
+  const data = await res.json();
 
-    // Play as soon as the page loads
-    window.addEventListener('load', () => {
-    playRandomTrack();
-    });
-});
+  if (!data || !data.url) {
+    console.error('No track returned from backend');
+    return;
+  }
+
+  // Extract track ID from URL
+  const trackId = data.url.split('/').pop();
+
+  // Send play command to Spotify
+  await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      uris: [`spotify:track:${trackId}`],
+    }),
+  });
+
+  console.log(`Playing: ${data.name} by ${data.artists.join(', ')}`);
+}
