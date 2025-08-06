@@ -23,7 +23,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     console.log('Ready with Device ID', device_id);
 
     // Auto play something from backend (optional)
-    fetch(`https://nerdspace-indol.vercel.app/api/play?device_id=${device_id}`); 
+    fetch(`https://nerdspace-indol.vercel.app/api/play?device_id=${device_id}`);
   });
 
   player.addListener('player_state_changed', state => {
