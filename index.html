@@ -91,6 +91,26 @@
         </div>
       </section>
 
+      <iframe id="spotify-player"
+        style="border-radius:12px" 
+        width="100%" 
+        height="80" 
+        frameBorder="0" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy">
+      </iframe>
+
+      <script>
+        fetch('https://nerdspace-indol.vercel.app/api/random-track')
+          .then(res => res.json())
+          .then(data => {
+            const trackId = data.id; // adjust based on actual JSON structure
+            const embedUrl = `https://open.spotify.com/embed/track/${trackId}`;
+            document.getElementById('spotify-player').src = embedUrl;
+          })
+          .catch(console.error);
+      </script>
+
       <!-- About Me Section -->
       <section id="about-me-section" class="container my-5">
         <div class="row justify-content-center">
