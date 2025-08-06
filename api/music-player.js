@@ -1,6 +1,6 @@
 window.onSpotifyWebPlaybackSDKReady = async () => {
   // Fetch access token from your backend
-  const res = await fetch('https://your-vercel-project.vercel.app/api/refresh-token');
+  const res = await fetch('https://nerdspace-indol.vercel.app/api/refresh-token');
   const { access_token } = await res.json();
 
   const player = new Spotify.Player({
