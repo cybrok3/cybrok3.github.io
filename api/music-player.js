@@ -55,19 +55,32 @@ window.onSpotifyWebPlaybackSDKReady = async() => {
   });
 
   player.addListener('player_state_changed', state => {
-    if (!state) return;
+  if (!state) return;
 
-    isPaused = state.paused;
-    currentTrackDuration = state.duration;
+  isPaused = state.paused;
+  currentTrackDuration = state.duration;
 
-    const currentTrack = state.track_window.current_track;
+  const currentTrack = state.track_window.current_track;
 
-    document.getElementById('trackInfo').textContent =
-      `${currentTrack.name} — ${currentTrack.artists.map(a => a.name).join(', ')}`;
+  // Cover image
+  const coverEl = document.getElementById('trackCover');
+  if (currentTrack.album.images.length > 0) {
+    coverEl.src = currentTrack.album.images[0].url; // largest image
+  } else {
+    coverEl.src = "resources/default-cover.jpg"; // fallback
+  }
 
-    document.getElementById('playPauseBtn').textContent = isPaused ? '▶️' : '⏸️';
-    document.getElementById('duration').textContent = formatMs(state.duration);
-  });
+  // Track + artist names
+  document.getElementById('trackName').textContent = currentTrack.name;
+  document.getElementById('artistName').textContent = currentTrack.artists.map(a => a.name).join(', ');
+
+  // Play/pause button
+  document.getElementById('playPauseBtn').textContent = isPaused ? '▶️' : '⏸️';
+
+  // Duration
+  document.getElementById('duration').textContent = formatMs(state.duration);
+});
+
 
   player.connect();
 };
