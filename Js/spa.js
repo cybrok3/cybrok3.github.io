@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const links = document.querySelectorAll(".nav-link");
     const mainContent = document.getElementById("main-content");
+    const clickSound = document.getElementById("navClickSound");
 
     function loadPage(page) {
         const url = `${page}.html`; // e.g. "projects.html"
@@ -39,6 +40,12 @@ document.addEventListener("DOMContentLoaded", () => {
     links.forEach(link => {
         link.addEventListener("click", (e) => {
             e.preventDefault();
+
+            if (clickSound) {
+                clickSound.currentTime = 0; // rewind to start
+                clickSound.play().catch(err => console.warn("Sound blocked:", err));
+            }
+
             const page = link.getAttribute("href").replace("#", "");
             window.location.hash = page; // triggers handleRoute()
         });

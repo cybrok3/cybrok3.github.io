@@ -15,6 +15,7 @@
 </head>
 
 <body>
+  <audio id="navClickSound" src="resources/sound_effects/click.mp3" preload="auto"></audio>
   <div class="layout">
     <!-- Sidebar -->
     <aside class="sidebar d-flex flex-column align-items-start code-font">
@@ -96,8 +97,9 @@
         <div class="player-left">
           <img id="trackCover" src="resources/default-cover.jpg" alt="Track Cover">
           <div id="trackInfo">
-            <span id="trackName">Track Name</span> - <span id="artistName">Artist</span>
-          </div>
+            <div id="trackName">Track Name</div>
+            <div id="artistName">Artist</div>
+        </div>
         </div>
 
         <!-- Right section: controls -->
