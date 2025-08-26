@@ -8,6 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(response => response.text())
             .then(data => {
                 mainContent.innerHTML = data;
+
+                // If it's the ozz page, initialize its script
+                if (page === "ozz") {
+                    initOzzPage();
+                }
             })
             .catch(err => {
                 mainContent.innerHTML = "<p>Failed to load content.</p>";
@@ -44,4 +49,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initial load
     handleRoute();
+
+    // Hearts logic for the ozz page
+    function initOzzPage() {
+        const container = document.getElementById("cat-container");
+        const heartsContainer = document.getElementById("hearts-container");
+
+        if (!container || !heartsContainer) return;
+
+        container.addEventListener("click", (e) => {
+            const rect = container.getBoundingClientRect();
+
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            heart.style.left = `${x}px`;
+            heart.style.top = `${y}px`;
+
+            heartsContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), 1000);
+        });
+    }
 });
