@@ -97,20 +97,25 @@
         <div class="player-left">
           <img id="trackCover" src="resources/default-cover.jpg" alt="Track Cover">
           <div id="trackInfo">
-            <div id="trackName">Track Name</div>
+            <div id="trackName"><strong>Track Name</strong></div>
             <div id="artistName">Artist</div>
+          </div>
         </div>
+
+        <div class="player-mid">
+          <button id="playPauseBtn"><svg viewBox="-3 0 28 28" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>play</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-419.000000, -571.000000)" fill="#000000"> <path d="M440.415,583.554 L421.418,571.311 C420.291,570.704 419,570.767 419,572.946 L419,597.054 C419,599.046 420.385,599.36 421.418,598.689 L440.415,586.446 C441.197,585.647 441.197,584.353 440.415,583.554" id="play" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg></button>
         </div>
 
         <!-- Right section: controls -->
         <div class="player-right">
-          <button id="playPauseBtn"><svg viewBox="-3 0 28 28" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>play</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-419.000000, -571.000000)" fill="#000000"> <path d="M440.415,583.554 L421.418,571.311 C420.291,570.704 419,570.767 419,572.946 L419,597.054 C419,599.046 420.385,599.36 421.418,598.689 L440.415,586.446 C441.197,585.647 441.197,584.353 440.415,583.554" id="play" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg></button>
           <div id="progressContainer">
             <span id="currentTime">0:00</span>
             <input type="range" id="progressBar" min="0" max="100" step="1" value="0">
             <span id="duration">0:00</span>
           </div>
-          <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.8">
+          <div class="volume-container">
+              <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.8">
+          </div>
         </div>
       </div>
 

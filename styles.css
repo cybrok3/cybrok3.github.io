@@ -149,7 +149,10 @@ body, html {
   color: #fff; /* brighter */
 }
 
-#artistName {
+#artistName,
+#duration,
+#currentTime 
+{
   color: #b3b3b3; /* Spotify’s muted gray */
   font-weight: 400;
 }
@@ -198,12 +201,19 @@ body, html {
   display: block; /* remove inline spacing issues */
 }
 
+.volume-container {
+    width: 100px;       /* fixed width for slider */
+    display: flex;
+    justify-content: center; /* center slider inside container */
+}
+
 /* Smaller, non-stretched volume slider */
 #volumeSlider {
-  width: 120px;                 /* fixed width */
+  width: 20px;                 /* fixed width */
   height: 6px;
   border-radius: 3px;
   background: rgba(255,255,255,0.3);
+  align-self: flex-start;
 }
 
 #volumeSlider,
