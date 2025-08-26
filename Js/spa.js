@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const links = document.querySelectorAll(".nav-link");
     const mainContent = document.getElementById("main-content");
 
-    function loadPage(url) {
+    function loadPage(page) {
+        const url = `${page}.html`; // e.g. "projects.html"
         fetch(url)
             .then(response => response.text())
             .then(data => {
@@ -14,45 +15,33 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
 
-    function highlightActiveLink(url) {
+    function highlightActiveLink(page) {
         links.forEach(link => link.classList.remove("active"));
         links.forEach(link => {
-            if (link.getAttribute("href") === url) {
+            if (link.getAttribute("href") === `#${page}`) {
                 link.classList.add("active");
             }
         });
     }
 
-    // Handle link clicks
+    function handleRoute() {
+        const page = window.location.hash.replace("#", "") || "home";
+        loadPage(page);
+        highlightActiveLink(page);
+    }
+
+    // Handle link clicks (optional — hashchange also covers it)
     links.forEach(link => {
         link.addEventListener("click", (e) => {
             e.preventDefault();
-            const url = link.getAttribute("href");
-            loadPage(url);
-            history.pushState({ page: url }, null, url);
-            highlightActiveLink(url);
+            const page = link.getAttribute("href").replace("#", "");
+            window.location.hash = page; // triggers handleRoute()
         });
     });
 
-    // Handle browser back/forward buttons
-    window.addEventListener("popstate", (e) => {
-        const url = e.state?.page || "home.html";
-        loadPage(url);
-        highlightActiveLink(url);
-    });
+    // Handle back/forward navigation
+    window.addEventListener("hashchange", handleRoute);
 
-    // -------------------------
-    // INITIAL LOAD
-    // -------------------------
-    const currentPath = window.location.pathname.split("/").pop();
-
-    // Decide which page to load initially
-    const initialPage = currentPath === "" || currentPath === "index.html" ? "home.html" : currentPath;
-
-    // Load it and highlight
-    loadPage(initialPage);
-    highlightActiveLink(initialPage);
-
-    // Replace state so SPA back button works correctly
-    history.replaceState({ page: initialPage }, null, initialPage);
+    // Initial load
+    handleRoute();
 });
