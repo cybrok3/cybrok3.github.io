@@ -8,6 +8,7 @@ let isPaused = true;
 let currentTrackDuration = 0;
 let deviceId = null;
 let accessToken = null;
+let trackEnded = false;
 
 function formatMs(ms) {
   const minutes = Math.floor(ms / 60000);
@@ -87,10 +88,18 @@ window.onSpotifyWebPlaybackSDKReady = async () => {
     document.getElementById('playPauseBtn').innerHTML = isPaused ? playIcon : pauseIcon;
     document.getElementById('duration').textContent = formatMs(state.duration);
 
-    // Auto-play next track when current ends
+    // Auto-play next track when current ends (once per track)
     if (state.paused && state.position === 0) {
-      playNextTrack();
+      if (!trackEnded) {
+        trackEnded = true;
+        playNextTrack().finally(() => {
+          trackEnded = false; // reset for the next track
+        });
+      }
+    } else {
+      trackEnded = false; // reset if track is playing
     }
+
   });
 
   // Connect player
