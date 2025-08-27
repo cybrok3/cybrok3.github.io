@@ -25,6 +25,10 @@ window.onSpotifyWebPlaybackSDKReady = async() => {
 
   const pauseIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="100%" height="100%" preserveAspectRatio="xMidYMid meet"> <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor"/> </svg>`;
 
+  function updateButton(isPaused) {
+    btn.innerHTML = isPaused ? playIcon : pauseIcon;
+  }
+
   player = new Spotify.Player({
     name: 'My Web Player',
     getOAuthToken: cb => cb(accessToken),
@@ -78,8 +82,9 @@ window.onSpotifyWebPlaybackSDKReady = async() => {
   document.getElementById('trackName').textContent = currentTrack.name;
   document.getElementById('artistName').textContent = currentTrack.artists.map(a => a.name).join(', ');
 
-  // Play/pause button
-  document.getElementById('playPauseBtn').textContent = isPaused ? '▶️' : '⏸️';
+   // Play/pause button – updated to use SVG
+  const btn = document.getElementById('playPauseBtn');
+  btn.innerHTML = isPaused ? playIcon : pauseIcon;
 
   // Duration
   document.getElementById('duration').textContent = formatMs(state.duration);
