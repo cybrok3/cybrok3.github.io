@@ -8,7 +8,18 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch(url)
             .then(response => response.text())
             .then(data => {
-                mainContent.innerHTML = data;
+                // Wrap content for animation
+                mainContent.innerHTML = `<div class="content-slide">${data}</div>`;
+
+                const newContent = mainContent.querySelector(".content-slide");
+
+                if (newContent) {
+                    // Force reflow to register initial state
+                    void newContent.offsetWidth; // reading offsetWidth forces reflow
+
+                    // Then add class to trigger animation
+                    newContent.classList.add("active");
+                }
 
                 // If it's the ozz page, initialize its script
                 if (page === "ozz") {
