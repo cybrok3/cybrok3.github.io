@@ -58,7 +58,7 @@ window.onSpotifyWebPlaybackSDKReady = async () => {
   accessToken = tokenData.access_token;
 
   const playIcon = `<svg style="justify-content: center; align-items: center;" width="256px" height="256px" viewBox="4 4 14 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15 12.3301L9 16.6603L9 8L15 12.3301Z"></path> </g></svg>`;
-  const pauseIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="100%" height="100%" preserveAspectRatio="xMidYMid meet"> <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor"/> </svg>`;
+  const pauseIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25px" height="30px" preserveAspectRatio="xMidYMid meet"> <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor"/> </svg>`;
 
   player = new Spotify.Player({
     name: 'My Web Player',
