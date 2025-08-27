@@ -195,12 +195,6 @@ body, html {
   justify-content: center;
 }
 
-#playPauseBtn svg {
-  width: 22px;    /* smaller than the button to leave space around */
-  height: 20px;
-  display: block; /* remove inline spacing issues */
-}
-
 .volume-container {
     width: 100px;       /* fixed width for slider */
     display: flex;
