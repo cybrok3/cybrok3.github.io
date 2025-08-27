@@ -93,6 +93,11 @@
       </section>
 
       <div id="playerUI">
+         <div class="player-left-most">
+          <button id="playPauseBtn"><svg style="justify-content: center; align-items: center;" width="256px" height="256px" viewBox="4 4 14 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15 12.3301L9 16.6603L9 8L15 12.3301Z"></path> </g></svg>
+          </button>
+        </div>
+
         <!-- Left section: track info -->
         <div class="player-left">
           <img id="trackCover" src="resources/logos/music_cover.png" alt="Track Cover">
@@ -102,11 +107,6 @@
           </div>
         </div>
 
-        <div class="player-mid">
-          <button id="playPauseBtn"><svg style="justify-content: center; align-items: center;" width="256px" height="256px" viewBox="4 4 14 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15 12.3301L9 16.6603L9 8L15 12.3301Z"></path> </g></svg>
-          </button>
-        </div>
-
         <!-- Right section: controls -->
         <div class="player-right">
           <div id="progressContainer">
@@ -114,12 +114,13 @@
             <input type="range" id="progressBar" min="0" max="100" step="1" value="0">
             <span id="duration">0:00</span>
           </div>
-          <div class="volume-container">
-            <svg id="volume-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><g data-name="low audio">
-              <path d="M11.46 3c-1 0-1 .13-6.76 4H1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h3.7l5.36 3.57A2.54 2.54 0 0 0 14 18.46V5.54A2.54 2.54 0 0 0 11.46 3zM2 9h2v6H2zm10 
-              9.46a.55.55 0 0 1-.83.45L6 15.46V8.54l5.17-3.45a.55.55 0 0 1 .83.45zM16.83 9.17a1 1 0 0 0-1.42 1.42 2 2 0 0 1 0 2.82 1 1 0 0 0 .71 1.71c1.38 0 3.04-3.62.71-5.95z"/></g></svg>
-              <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.8">
-          </div>
+        </div>
+
+        <div class="volume-container">
+          <svg id="volume-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><g data-name="low audio">
+            <path d="M11.46 3c-1 0-1 .13-6.76 4H1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h3.7l5.36 3.57A2.54 2.54 0 0 0 14 18.46V5.54A2.54 2.54 0 0 0 11.46 3zM2 9h2v6H2zm10 
+            9.46a.55.55 0 0 1-.83.45L6 15.46V8.54l5.17-3.45a.55.55 0 0 1 .83.45zM16.83 9.17a1 1 0 0 0-1.42 1.42 2 2 0 0 1 0 2.82 1 1 0 0 0 .71 1.71c1.38 0 3.04-3.62.71-5.95z"/></g></svg>
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.8">
         </div>
       </div>
 
