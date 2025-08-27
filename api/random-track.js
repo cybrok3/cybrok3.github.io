@@ -71,6 +71,7 @@ export default async function handler(req, res) {
       name: randomTrack.name,
       artists: randomTrack.artists.map(a => a.name),
       url: randomTrack.external_urls.spotify,
+      uri: randomTrack.uri,
       preview_url: randomTrack.preview_url,
       album_cover: randomTrack.album.images[0]?.url || null,
     });
