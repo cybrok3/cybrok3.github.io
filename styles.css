@@ -173,7 +173,7 @@ body, html {
 }
 
 #progressBar {
-  flex-grow: 1;                 /* stretched */
+  flex-grow: 1;
   height: 6px;
   border-radius: 3px;
   background: rgba(255,255,255,0.3);
@@ -214,26 +214,28 @@ body, html {
 #progressBar {
   -webkit-appearance: none;
   width: 100%;
-  height: 6px;           /* track thickness */
-  background: #535353;
+  height: 6px;
+  background: #535353; /* fallback for unfilled part */
   border-radius: 3px;
   outline: none;
   margin: 0;
-  padding: 0;            /* remove extra space inside slider */
-  vertical-align: middle; /* helps align thumb in container */
+  padding: 0;
+  vertical-align: middle;
+  --percent: 50%; /* initial fill percentage */
+  background: linear-gradient(to right, #ffffff 0%, #ffffff var(--percent), #535353 var(--percent), #535353 100%);
 }
 
 /* Webkit thumb */
 #volumeSlider::-webkit-slider-thumb,
 #progressBar::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 12px;           /* slightly smaller for balance */
+  width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #1DB954;
+  background: #ffffff;  /* white thumb */
   cursor: pointer;
-  margin-top: -3px;      /* adjust to center on track */
-  box-shadow: 0 0 2px rgba(0,0,0,0.5); /* subtle depth */
+  margin-top: -3px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
 }
 
 /* Firefox thumb */
@@ -242,16 +244,16 @@ body, html {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #1DB954;
+  background: #ffffff;
   cursor: pointer;
 }
 
-/* Firefox track */
+/* Firefox track fallback */
 #volumeSlider::-moz-range-track,
 #progressBar::-moz-range-track {
-  background: #535353;
   height: 6px;
   border-radius: 3px;
+  background: #535353;
 }
 
 /* #home-icon{

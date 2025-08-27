@@ -134,6 +134,23 @@ document.getElementById('volumeSlider').addEventListener('input', e => {
   player.setVolume(parseFloat(e.target.value));
 });
 
+function updateSliderFill(slider) {
+  const value = slider.value;
+  const min = slider.min || 0;
+  const max = slider.max || 100;
+  const percent = ((value - min) / (max - min)) * 100;
+  slider.style.setProperty('--percent', `${percent}%`);
+}
+
+// Initial fill
+updateSliderFill(document.getElementById('volumeSlider'));
+updateSliderFill(document.getElementById('progressBar'));
+
+// Update fill on user input
+document.getElementById('volumeSlider').addEventListener('input', e => updateSliderFill(e.target));
+document.getElementById('progressBar').addEventListener('input', e => updateSliderFill(e.target));
+
+
 // Progress bar update
 setInterval(async () => {
   if (!player) return;
@@ -142,4 +159,5 @@ setInterval(async () => {
   const position = state.position;
   document.getElementById('progressBar').value = (position / currentTrackDuration) * 100;
   document.getElementById('currentTime').textContent = formatMs(position);
+  updateSliderFill(document.getElementById('progressBar'));
 }, 1000);
