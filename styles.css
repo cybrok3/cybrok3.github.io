@@ -383,11 +383,24 @@ body, html {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+#social-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+#social-row a {
+  flex: 0 1 auto;   /* don’t stretch icons, keep natural width */
+  margin: 0;        /* remove default margins */
+}
+
 .social-icon {
   font-size: 1.5rem;
   /* transition: transform 0.3s ease; */
   transition: color 0.3s ease, transform 0.3s ease;
   color: #E0E0E0;
+  margin: 0 !important;
 }
 
 .social-icon:hover {
