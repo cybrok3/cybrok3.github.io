@@ -199,6 +199,16 @@ body, html {
     width: 100px;       /* fixed width for slider */
     display: flex;
     justify-content: center; /* center slider inside container */
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+}
+
+#volume-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;        /* prevent shrinking */
+  display: block;        /* remove inline spacing quirks */
 }
 
 /* Smaller, non-stretched volume slider */
@@ -207,7 +217,7 @@ body, html {
   height: 6px;
   border-radius: 3px;
   background: rgba(255,255,255,0.3);
-  align-self: flex-start;
+  align-self: center;
 }
 
 #volumeSlider,
