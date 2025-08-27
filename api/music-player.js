@@ -69,9 +69,6 @@ window.onSpotifyWebPlaybackSDKReady = async () => {
   player.addListener('ready', async ({ device_id }) => {
     console.log('Ready with Device ID:', device_id);
     deviceId = device_id;
-
-    // Play the first random track
-    await playNextTrack();
   });
 
   // Player state change listener
@@ -99,6 +96,21 @@ window.onSpotifyWebPlaybackSDKReady = async () => {
   // Connect player
   player.connect();
 };
+
+let firstInteraction = false;
+
+function startPlaybackAfterInteraction() {
+    if (firstInteraction) return;
+    firstInteraction = true;
+
+    // Only now start the first track
+    playNextTrack();
+}
+
+// Listen for any gesture
+['click', 'keydown', 'touchstart'].forEach(evt => {
+    document.body.addEventListener(evt, startPlaybackAfterInteraction, { once: true });
+});
 
 // Play/pause toggle
 document.getElementById('playPauseBtn').addEventListener('click', () => {
