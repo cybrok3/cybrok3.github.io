@@ -1,5 +1,3 @@
-// navbar.js
-
 document.addEventListener("DOMContentLoaded", () => {
     const links = document.querySelectorAll(".nav-link");
 
@@ -18,5 +16,26 @@ document.addEventListener("DOMContentLoaded", () => {
     // Listen for SPA page loads
     window.addEventListener("pageChanged", (e) => {
         highlightActive(e.detail.url);
+    });
+
+    // --- SIDEBAR TOGGLE (NO OVERLAY) ---
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    const sidebar = document.querySelector('.sidebar');
+
+    if (toggleBtn && sidebar) {
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+    }
+
+    // **Use the same 'links' variable**
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            if (sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+                // optional: show the toggle again if you add the hidden class logic
+                if(toggleBtn) toggleBtn.classList.remove('hidden');
+            }
+        });
     });
 });
