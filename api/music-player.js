@@ -9,6 +9,7 @@ let currentTrackDuration = 0;
 let deviceId = null;
 let accessToken = null;
 let trackEnded = false;
+const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
 function formatMs(ms) {
   const minutes = Math.floor(ms / 60000);
@@ -92,14 +93,19 @@ window.onSpotifyWebPlaybackSDKReady = async () => {
     if (state.paused && state.position === 0) {
       if (!trackEnded) {
         trackEnded = true;
-        playNextTrack().finally(() => {
-          trackEnded = false; // reset for the next track
-        });
+
+        // Only auto-play next if:
+        // - Desktop (no restrictions), OR
+        // - Mobile but user already interacted once
+        if (!isMobile || firstInteraction) {
+          playNextTrack().finally(() => {
+            trackEnded = false; // reset for the next track
+          });
+        }
       }
     } else {
       trackEnded = false; // reset if track is playing
     }
-
   });
 
   // Connect player
