@@ -25,6 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (page === "ozz") {
                     initOzzPage();
                 }
+
+                if(page === "art"){
+                    initMyArtPage();
+                }
             })
             .catch(err => {
                 mainContent.innerHTML = "<p>Failed to load content.</p>";
@@ -90,5 +94,28 @@ document.addEventListener("DOMContentLoaded", () => {
             heartsContainer.appendChild(heart);
             setTimeout(() => heart.remove(), 1000);
         });
+    }
+
+    function initMyArtPage() {
+        const grid = document.getElementById("art-grid");
+        if (!grid) return;
+
+        fetch("https://cybrok3.github.io/posts/my_art/my-art.json")
+            .then(res => res.json())
+            .then(posts => {
+                posts.forEach(post => {
+                    const card = document.createElement("div");
+                    card.className = "card";
+
+                    card.innerHTML = `
+                        <img src="${post.imageUrl}" alt="${post.title}">
+                        <h2>${post.title}</h2>
+                        <p>${post.description}</p>
+                        ${post.link ? `<a href="${post.link}" target="_blank">View More</a>` : ""}
+                    `;
+                    grid.appendChild(card);
+                });
+            })
+            .catch(err => console.error("Failed to load art posts:", err));
     }
 });

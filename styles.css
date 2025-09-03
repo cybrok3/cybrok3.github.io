@@ -418,6 +418,28 @@ footer {
   color: #E0E0E0;
 }
 
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.card h2 { margin: 10px 0 5px; font-size: 1.2rem; }
+.card p { color: #555; font-size: 0.9rem; }
+.card a { color: #1e90ff; text-decoration: none; font-size: 0.9rem; }
+
 /* Center and position elements */
 #cat-container {
   position: relative; /* So hearts are placed relative to this */
