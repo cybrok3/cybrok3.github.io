@@ -419,7 +419,6 @@ footer {
 }
 
 .grid {
-    padding-top: 1rem;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -428,7 +427,7 @@ footer {
 
 .grid .card {
     background-color: #0D0D0D;
-    width: 90%;
+    width: 70%;
     border-radius: 25px;
     padding: 2rem;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
