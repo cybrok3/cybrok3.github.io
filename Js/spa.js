@@ -113,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p>${post.description}</p>
                         ${post.link ? `
                         <div class="spotify-container">
-                            <h3>Song that accompanies:</h3>
                             <iframe src="${getSpotifyEmbedUrl(post.link)}" width="100%" height="auto" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                         </div>
                         ` : ""}
