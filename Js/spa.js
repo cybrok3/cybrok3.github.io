@@ -108,14 +108,27 @@ document.addEventListener("DOMContentLoaded", () => {
                     card.className = "card";
 
                     card.innerHTML = `
-                        <img src="${post.imageUrl}" alt="${post.title}">
                         <h2>${post.title}</h2>
+                        <img src="${post.imageUrl}" alt="${post.title}">
                         <p>${post.description}</p>
-                        ${post.link ? `<a href="${post.link}" target="_blank">View More</a>` : ""}
+                        ${post.link ? `
+                        <div class="spotify-container">
+                            <h3>Song that accompanies:</h3>
+                            <iframe src="${getSpotifyEmbedUrl(post.link)}" width="100%" height="auto" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                        </div>
+                        ` : ""}
                     `;
                     grid.appendChild(card);
                 });
             })
             .catch(err => console.error("Failed to load art posts:", err));
+    }
+
+    function getSpotifyEmbedUrl(trackUrl) {
+        // Example track URL:
+        // https://open.spotify.com/track/4CeeEOM32jQcH3eN9Q2dGj
+        // Convert to embed format:
+        // https://open.spotify.com/embed/track/4CeeEOM32jQcH3eN9Q2dGj
+        return trackUrl.replace("open.spotify.com/track/", "open.spotify.com/embed/track/");
     }
 });
