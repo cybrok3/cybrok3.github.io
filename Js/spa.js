@@ -108,15 +108,19 @@ document.addEventListener("DOMContentLoaded", () => {
                     card.className = "card";
 
                     card.innerHTML = `
-                        <h2>${post.title}</h2>
                         <img src="${post.imageUrl}" alt="${post.title}">
                         <p>${post.description}</p>
                         ${post.link ? `
                         <div class="spotify-container">
-                            <iframe src="${getSpotifyEmbedUrl(post.link)}" width="100%" height="auto" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                            <iframe 
+                                src="${getSpotifyEmbedUrl(post.link)}" 
+                                frameborder="0" 
+                                allowtransparency="true" 
+                                allow="encrypted-media">
+                            </iframe>
                         </div>
                         ` : ""}
-                    `;
+                        `;
                     grid.appendChild(card);
                 });
             })
