@@ -427,8 +427,8 @@ footer {
 
 .grid .card {
     background-color: #0D0D0D;
-    width: 70%;
-    border-radius: 25px;
+    width: 75%;
+    border-radius: 50px;
     padding: 2rem;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     display: flex;
