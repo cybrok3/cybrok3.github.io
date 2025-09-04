@@ -287,6 +287,11 @@ body, html {
   height: 25px;
 } */
 
+#sk8-icon {
+    width: 25px;
+    height: auto;
+}
+
 .sidebar .nav-link:focus {
     color: #47d459;
 }
