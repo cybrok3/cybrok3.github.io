@@ -422,6 +422,10 @@ body, html {
   color: #47d459;
 }
 
+.container p{
+  text-align: justify;
+}
+
 footer {
   margin-top: 2rem;
   color: #E0E0E0;
