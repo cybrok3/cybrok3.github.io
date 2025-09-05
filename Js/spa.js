@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <source src="${post.videoUrl}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <p>${post.description}</p>
+                        <p class="video_desc">${post.description}</p>
                     `;
 
                     grid.appendChild(card);

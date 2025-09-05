@@ -465,7 +465,7 @@ footer {
   width: 100%;
   border-radius: 12px;
   background: #000; /* fallback behind video */
-  margin-bottom: 1rem;
+  border-radius: 25px 25px 0px 0px;
 }
 
 .card p {
@@ -476,6 +476,10 @@ footer {
     background-color: #0d0d0d;
     color: #e0e0e0; 
     font-size: 1.2rem;
+}
+
+.video_desc {
+  border-radius: 0px 0px 25px 25px;
 }
 
 .spotify-container {
