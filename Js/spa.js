@@ -29,6 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 if(page === "art"){
                     initMyArtPage();
                 }
+
+                if(page =="sk8"){
+                    initSkateClipsPage();
+                }
             })
             .catch(err => {
                 mainContent.innerHTML = "<p>Failed to load content.</p>";
@@ -125,6 +129,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             })
             .catch(err => console.error("Failed to load art posts:", err));
+    }
+
+    function initSkateClipsPage() {
+        const grid = document.getElementById("skate-grid");
+        if (!grid) return;
+
+        fetch("https://cybrok3.github.io/posts/skate_clips/skate-clips.json")
+            .then(res => res.json())
+            .then(posts => {
+                posts.forEach(post => {
+                    const card = document.createElement("div");
+                    card.className = "card";
+
+                    card.innerHTML = `
+                        <video controls>
+                            <source src="${post.videoUrl}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p>${post.description}</p>
+                    `;
+
+                    grid.appendChild(card);
+                });
+            })
+            .catch(err => console.error("Failed to load skate clips:", err));
     }
 
     function getSpotifyEmbedUrl(trackUrl) {

@@ -461,6 +461,13 @@ footer {
     border-radius: 25px 25px 0px 0px;
 }
 
+.card video {
+  width: 100%;
+  border-radius: 12px;
+  background: #000; /* fallback behind video */
+  margin-bottom: 1rem;
+}
+
 .card p {
     margin: 0 !important;
     padding: 1rem;
