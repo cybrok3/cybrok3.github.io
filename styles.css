@@ -478,6 +478,19 @@ footer {
     font-size: 1.2rem;
 }
 
+#music-grid .card {
+    width: 50%; /* smaller than the art cards */
+    max-width: 400px; /* optional: prevents it from being too wide on big screens */
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Optional: make video fit nicely inside the smaller card */
+#music-grid .card video {
+    width: 100%;
+    height: auto;
+}
+
 .video_desc {
   border-radius: 0px 0px 25px 25px;
 }
