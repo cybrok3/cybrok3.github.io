@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const clickSound = document.getElementById("navClickSound");
 
     function loadPage(page) {
-        const url = `${page}.html`; // e.g. "projects.html"
+        const url = `${page}.html`;
         fetch(url)
             .then(response => response.text())
             .then(data => {
