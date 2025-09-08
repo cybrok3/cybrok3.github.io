@@ -30,8 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     initMyArtPage();
                 }
 
-                if(page =="sk8"){
+                if(page ==="sk8"){
                     initSkateClipsPage();
+                }
+
+                if(page === "music"){
+                    initMusicPage();
                 }
             })
             .catch(err => {
@@ -154,6 +158,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             })
             .catch(err => console.error("Failed to load skate clips:", err));
+    }
+
+    function initMusicPage() {
+        const grid = document.getElementById("music-grid");
+        if (!grid) return;
+
+        fetch("https://cybrok3.github.io/posts/my_music/my-music.json")
+            .then(res => res.json())
+            .then(posts => {
+                posts.forEach(post => {
+                    const card = document.createElement("div");
+                    card.className = "card";
+
+                    card.innerHTML = `
+                        <video controls>
+                            <source src="${post.videoUrl}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="video_desc">${post.description}</p>
+                    `;
+
+                    grid.appendChild(card);
+                });
+            })
+            .catch(err => console.error("Failed to load music clips:", err));
     }
 
     function getSpotifyEmbedUrl(trackUrl) {
