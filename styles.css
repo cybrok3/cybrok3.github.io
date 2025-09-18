@@ -2,7 +2,8 @@
 body, html {
   margin: 0;
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   background: linear-gradient(180deg, #1C1C1C, #2E2E2E, #3C3C3C, #525252) !important;
   background-attachment: fixed;
   color: #E0E0E0;
@@ -310,7 +311,8 @@ body, html {
 .content-area {
   position: relative;
   overflow: hidden;
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
   flex-grow: 1rem;
   overflow-y: auto;
   background-color: #181818;
@@ -704,6 +706,7 @@ ul.custom-list li::before {
     padding: 10px 15px;
     overflow-x: auto;
   }
+  
   /* .sidebar .navbar-brand.d-flex {
     flex-direction: row;
     gap: 0.5rem;
@@ -734,10 +737,10 @@ ul.custom-list li::before {
   .sidebar {
     position: fixed;
     top: 0;
-    left: -350px; /* hidden off-screen initially */
+    left: -100%;        /* fully hidden off-screen */
     height: 100%;
-    width: 300px; /* slightly smaller than desktop */
-    max-width: 80vw;
+    width: 85vw;        /* take up most of screen */
+    max-width: 400px;   /* don’t let it get too wide */
     transition: left 0.3s ease;
     z-index: 1000;
     overflow-y: auto;
@@ -745,7 +748,7 @@ ul.custom-list li::before {
   }
 
   .sidebar.active {
-    left: 0; /* slide in */
+    left: 0; /* slide in fully */
   }
 
   #sidebar-toggle {
@@ -783,8 +786,55 @@ ul.custom-list li::before {
 }
 
 /* Desktop: hide toggle button */
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   #sidebar-toggle {
     display: none;
   }
 }
+
+/* Slightly enlarge content on tablets and below */
+@media (max-width: 768px) {
+  :root {
+    font-size: 110%; /* scale base font size (was 100%) */
+  }
+
+  .content-area h1 { font-size: 2.2rem; }
+  .content-area h2 { font-size: 1.7rem; }
+  .content-area p,
+  .content-area ul,
+  .content-area .lead {
+    font-size: 1.2rem;
+  }
+
+  .sidebar .nav-link {
+    font-size: 1.3rem;
+    padding: 1rem;
+  }
+}
+
+/* Make it even bigger for very small phones */
+@media (max-width: 480px) {
+  :root {
+    font-size: 115%;
+  }
+
+  .content-area h1 { font-size: 2.4rem; }
+  .content-area h2 { font-size: 1.8rem; }
+  .content-area p,
+  .content-area ul,
+  .content-area .lead {
+    font-size: 1.25rem;
+  }
+
+  .sidebar .nav-link {
+    font-size: 1.4rem;
+    padding: 1.1rem;
+  }
+
+  /* bump icons/images a touch */
+  .sidebar img.rounded-circle {
+    width: 70px;
+    height: 70px;
+  }
+}
+
