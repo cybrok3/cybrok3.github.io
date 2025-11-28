@@ -38,6 +38,16 @@ const pauseIcon = `
 `;
 
 // ====== HELPERS ======
+function playRandomTrack() {
+  if (!ytPlayer) return;
+
+  const playlistSize = ytPlayer.getPlaylist().length;
+  if (playlistSize === 0) return;
+
+  const randomIndex = Math.floor(Math.random() * playlistSize);
+  ytPlayer.playVideoAt(randomIndex);
+}
+
 function formatTime(seconds) {
   seconds = Math.floor(seconds || 0);
   const m = Math.floor(seconds / 60);
@@ -160,7 +170,7 @@ function onPlayerReady(event) {
       () => {
         if (firstInteractionDone || !ytPlayer) return;
         firstInteractionDone = true;
-        ytPlayer.playVideo();
+        ytPlayer.playRandomTrack();
       },
       { once: true }
     );
@@ -185,7 +195,7 @@ function onPlayerStateChange(event) {
     stopProgressTimer();
   } else if (state === YT.PlayerState.ENDED) {
     // Move to next video in the playlist
-    ytPlayer.nextVideo();
+    ytPlayer.playRandomTrack();
   }
 }
 
