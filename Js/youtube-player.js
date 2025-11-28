@@ -164,7 +164,7 @@ function onPlayerReady(event) {
   updateSliderFill(progressBar);
 
   // Start playback on first ANY interaction (click, key, touch)
-  ["click", "keydown", "touchstart"].forEach(evt => {
+  ["click", "keydown", "touchstart", "scroll"].forEach(evt => {
     document.addEventListener(
       evt,
       () => {
