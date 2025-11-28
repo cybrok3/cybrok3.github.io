@@ -170,7 +170,7 @@ function onPlayerReady(event) {
       () => {
         if (firstInteractionDone || !ytPlayer) return;
         firstInteractionDone = true;
-        ytPlayer.playRandomTrack();
+        playRandomTrack();
       },
       { once: true }
     );
@@ -195,7 +195,7 @@ function onPlayerStateChange(event) {
     stopProgressTimer();
   } else if (state === YT.PlayerState.ENDED) {
     // Move to next video in the playlist
-    ytPlayer.playRandomTrack();
+    playRandomTrack();
   }
 }
 
