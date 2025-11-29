@@ -1,14 +1,18 @@
+const proxy = "https://corsproxy.io/?";
+
+async function fetchJsonThroughProxy(url) {
+  const res = await fetch(proxy + encodeURIComponent(url));
+  return res.json();
+}
+
 async function fetchQuote() {
   try {
-    const res = await fetch("https://type.fit/api/quotes");
-    const data = await res.json();
-
-    // pick random quote
-    const random = data[Math.floor(Math.random() * data.length)];
+    const data = await fetchJsonThroughProxy("https://zenquotes.io/api/random");
+    const item = data[0];
 
     return {
-      text: random.text || "No quote available",
-      author: random.author || "Unknown"
+      text: item.q,
+      author: item.a
     };
   } catch (err) {
     return {
