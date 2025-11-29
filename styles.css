@@ -318,6 +318,9 @@ body, html {
 #terminalText {
   margin: 0;
   font-size: 0.95rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .quote-text {
