@@ -304,6 +304,30 @@ body, html {
   background: #535353;
 }
 
+#terminalQuoteBox {
+  background: #0c0c0c;
+  color: #47d459;
+  font-family: "JetBrains Mono", monospace;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: 2px solid #535353;
+  width: 100%;
+  white-space: pre-wrap;
+}
+
+#terminalText {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.quote-text {
+  color: #e0e0e0;
+}
+
+.quote-author {
+  color: #47d459;
+}
+
 /* Main Content Scroll Area */
 .content-area {
   position: relative;
