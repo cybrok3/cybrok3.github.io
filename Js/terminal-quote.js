@@ -1,11 +1,14 @@
 async function fetchQuote() {
   try {
-    const res = await fetch("https://programming-quotesapi.vercel.app/api/random");
+    const res = await fetch("https://type.fit/api/quotes");
     const data = await res.json();
 
+    // pick random quote
+    const random = data[Math.floor(Math.random() * data.length)];
+
     return {
-      text: data.quote,
-      author: data.author
+      text: random.text || "No quote available",
+      author: random.author || "Unknown"
     };
   } catch (err) {
     return {
@@ -31,7 +34,7 @@ async function displayQuote() {
 
   const quote = await fetchQuote();
 
-  const html = 
+  const html =
     `> <span class="quote-text">"${quote.text}"</span>\n` +
     `> <span class="quote-author">— ${quote.author}</span>`;
 
