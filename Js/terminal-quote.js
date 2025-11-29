@@ -7,7 +7,7 @@ async function fetchJsonThroughProxy(url) {
 
 async function fetchQuote() {
   try {
-    const data = await fetchJsonThroughProxy("https://zenquotes.io/api/random");
+    const data = await fetchJsonThroughProxy("https://zenquotes.io/api/random/short");
     const item = data[0];
 
     return {

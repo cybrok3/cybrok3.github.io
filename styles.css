@@ -304,23 +304,39 @@ body, html {
   background: #535353;
 }
 
+#terminalQuoteFrame {
+  font-family: "JetBrains Mono", monospace;
+  color: #535353;
+  text-align: left;
+  width: 520px; /* match quote box width */
+  margin: 10px auto -10px auto;
+  font-size: 0.9rem;
+}
+
 #terminalQuoteBox {
   background: #0c0c0c;
   color: #e0e0e0;
   font-family: "JetBrains Mono", monospace;
-  padding-left: 1rem;
-  padding-right: 1rem;
+
+  padding: 0.1rem 1.25rem;
   border: 2px solid #535353;
-  width: 100%;
+
+  width: 520px;        /* Desktop default */
+  margin: 20px auto 0;
+
   white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 #terminalText {
-  margin: 0;
+  margin-top: -30px;
+  margin-bottom: -30px;
   font-size: 0.95rem;
+  line-height: 2em;
   white-space: pre-wrap;
-  word-break: break-word;
   overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .quote-text {
@@ -329,6 +345,10 @@ body, html {
 
 .quote-author {
   color: #47d459;
+}
+
+#main-content {
+  margin-top: -20px;
 }
 
 /* Main Content Scroll Area */
@@ -718,6 +738,12 @@ ul.custom-list li::before {
 
 /* Mobile (≤768px) - slide sidebar, vertical layout */
 @media (max-width: 768px) {
+
+  #terminalQuoteBox {
+    width: 100%;         /* Take full screen width */
+    border-radius: 0;    /* Optional: clean edge-to-edge look */
+    margin: 15px 0 0 0;  /* Remove left/right auto-centering */
+  }
 
   /* Layout becomes vertical */
   .layout {
