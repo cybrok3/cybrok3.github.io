@@ -1,10 +1,10 @@
 async function fetchQuote() {
   try {
-    const res = await fetch("https://api.quotable.io/random");
+    const res = await fetch("https://programming-quotesapi.vercel.app/api/random");
     const data = await res.json();
 
     return {
-      text: data.content,
+      text: data.quote,
       author: data.author
     };
   } catch (err) {
