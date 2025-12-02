@@ -37,6 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 if(page === "music"){
                     initMusicPage();
                 }
+
+                if(page === "home"){
+                    initNasaCard();
+                }
             })
             .catch(err => {
                 mainContent.innerHTML = "<p>Failed to load content.</p>";

@@ -339,6 +339,58 @@ body, html {
   word-break: break-word;
 }
 
+#nasaCardFrame {
+  font-family: "JetBrains Mono", monospace;
+  color: #535353;
+  text-align: left;
+  width: 520px; /* match quote box width */
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+#nasaCard {
+  font-family: "JetBrains Mono", monospace;
+  background-color: #0D0D0D;
+  border: 2px solid #535353;
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+#nasaPhoto {
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  display: block;
+  border: 1px solid #535353;
+}
+
+#nasaTitle {
+  width: 100%;
+  text-align: left;
+}
+
+#nasaDate {
+  width: 100%;
+  font-size: 0.85rem;
+  color: #bfbfbf;
+  text-align: left;
+}
+
+.nasa-hd-button, .nasa-article-button {
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nasa-hd-button:hover {
+  color: #fff;
+}
+
 .quote-text {
   color: #e0e0e0;
 }
@@ -745,14 +797,6 @@ ul.custom-list li::before {
     margin: 15px 0 0 0;  /* Remove left/right auto-centering */
   }
 
-  /* Layout becomes vertical */
-  .layout {
-    height: 100vh;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
   /* Sidebar becomes drawer */
   .sidebar {
     position: fixed;
@@ -795,6 +839,14 @@ ul.custom-list li::before {
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+  }
+
+  /* Layout becomes vertical */
+  .layout {
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
   /* Player stacks vertically */
