@@ -1,5 +1,6 @@
 function initNasaCard() {
     const img = document.getElementById("nasaPhoto");
+    const video = document.getElementById("nasaVideo");
     const title = document.getElementById("nasaTitle");
     const date = document.getElementById("nasaDate");
     const hdLink = document.getElementById("nasaHDLink");
@@ -12,20 +13,25 @@ function initNasaCard() {
     fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
         .then(res => res.json())
         .then(data => {
-            // Title
-            title.textContent = data.title;
 
-            // Date
+            title.textContent = data.title;
             date.textContent = `Date: ${data.date}`;
 
-            // Image
             if (data.media_type === "image") {
-                img.src = data.url;
-            } else {
-                img.src = "resources/logos/nerdspace_icon.png";
-            }
+                // Show image, hide video
+                img.style.display = "block";
+                video.style.display = "none";
 
-            img.style.display = "block";
+                img.src = data.url;
+
+            } else if (data.media_type === "video") {
+
+                // Show video, hide image
+                img.style.display = "none";
+                video.style.display = "block";
+
+                video.src = data.url;  // APOD video URLs work directly in iframe
+            }
 
             // HD link
             if (data.hdurl) {
@@ -35,18 +41,14 @@ function initNasaCard() {
                 hdLink.style.display = "none";
             }
 
-            // ARTICLE LINK
-            // Convert YYYY-MM-DD to YYMMDD
+            // ARTICLE URL
             const parts = data.date.split("-");
             const yy = parts[0].substring(2);
             const mm = parts[1];
             const dd = parts[2];
 
-            const articleUrl = `https://apod.nasa.gov/apod/ap${yy}${mm}${dd}.html`;
-
-            articleLink.href = articleUrl;
+            articleLink.href = `https://apod.nasa.gov/apod/ap${yy}${mm}${dd}.html`;
             articleLink.style.display = "block";
-
         })
         .catch(err => console.error("NASA API error:", err));
 }

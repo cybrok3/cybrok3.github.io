@@ -362,6 +362,13 @@ body, html {
   margin-bottom: 1.5rem;
 }
 
+#nasaVideo {
+  width: 100%;
+  max-width: 520px;
+  height: 315px; /* YouTube aspect ratio */
+  border: 1px solid #535353;
+}
+
 #nasaPhoto {
   width: 100%;
   height: auto;
