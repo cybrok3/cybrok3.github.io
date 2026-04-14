@@ -362,6 +362,16 @@ body, html {
   margin-bottom: 1.5rem;
 }
 
+#nasaLoader {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(71, 212, 89, 0.2);
+  border-top-color: #47d459;
+  border-radius: 50%;
+  animation: nasaSpin 0.8s linear infinite;
+  margin: 6rem auto;
+}
+
 #nasaVideo {
   width: 100%;
   max-width: 520px;
@@ -373,8 +383,13 @@ body, html {
   width: 100%;
   height: auto;
   flex-shrink: 0;
-  display: block;
   border: 1px solid #535353;
+}
+
+@keyframes nasaSpin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #nasaTitle {
