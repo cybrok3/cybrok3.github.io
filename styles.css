@@ -571,6 +571,10 @@ footer {
   margin-top: -20px;
 }
 
+.custom-grid {
+  margin-top: -20px;
+}
+
 .media-card-shell {
   width: 65%;
   max-width: 520px;
@@ -745,6 +749,69 @@ footer {
 
 .project-card {
   /* hook for future */
+}
+
+.projects-card {
+  width: 100%;
+  max-width: 520px;
+  padding: 1rem;
+  gap: 10px;
+  border: 2px solid #535353;
+  border-radius: 0 !important;
+  box-shadow: none;
+  background-color: #0D0D0D;
+  align-items: flex-start;
+}
+
+.projects-card h5 {
+  width: 100%;
+  margin: 0;
+  color: #e0e0e0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.projects-card p {
+  width: 100%;
+  margin: 0 !important;
+  padding: 0;
+  background: transparent;
+  color: #bfbfbf;
+  font-size: 0.95rem;
+  text-align: left;
+  border-radius: 0 !important;
+}
+
+.projects-card #projects-list {
+  width: 100%;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #bfbfbf;
+  text-align: left;
+}
+
+.projects-card #projects-list li {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #bfbfbf;
+  text-align: left;
+}
+
+.projects-card-link {
+  width: 100%;
+  color: #47d459;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  text-align: left;
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.projects-card-link:hover {
+  color: #fff;
 }
 
 .spotify-container {
