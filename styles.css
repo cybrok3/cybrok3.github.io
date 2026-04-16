@@ -454,6 +454,9 @@ body, html {
 .content-slide.active {
   transform: translateY(0);
   opacity: 1;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
 }
 
 .content-area img.banner {
