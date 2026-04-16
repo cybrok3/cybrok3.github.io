@@ -117,11 +117,12 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(posts => {
                 posts.forEach(post => {
                     const card = document.createElement("div");
-                    card.className = "card";
+                    card.className = "card media-card art-card";
 
                     card.innerHTML = `
                         <img src="${post.imageUrl}" alt="${post.title}">
-                        <p>${post.description}</p>
+                        <div class="media-card-title">${post.title}</div>
+                        <p class="media-card-description">${post.description}</p>
                         ${post.link ? `
                         <div class="spotify-container">
                             <iframe 
@@ -148,14 +149,15 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(posts => {
                 posts.forEach(post => {
                     const card = document.createElement("div");
-                    card.className = "card";
+                    card.className = "card media-card skate-card";
 
                     card.innerHTML = `
                         <video controls>
                             <source src="${post.videoUrl}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <p class="video_desc">${post.description}</p>
+                        <div class="media-card-title">${post.title}</div>
+                        <p class="media-card-description">${post.description}</p>
                     `;
 
                     grid.appendChild(card);
@@ -173,14 +175,15 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(posts => {
                 posts.forEach(post => {
                     const card = document.createElement("div");
-                    card.className = "card";
+                    card.className = "card media-card music-card";
 
                     card.innerHTML = `
                         <video controls>
                             <source src="${post.videoUrl}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <p class="video_desc">${post.description}</p>
+                        <div class="media-card-title">${post.title}</div>
+                        <p class="media-card-description">${post.description}</p>
                     `;
 
                     grid.appendChild(card);
