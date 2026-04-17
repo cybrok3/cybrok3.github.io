@@ -1,5 +1,10 @@
 [
   {
+    "title": "Sample 03",
+    "description": "Sample 03",
+    "audioUrl": "posts/my_music/sample_03.mp3"
+  },
+  {
     "title": "Radiohead inspired diminished chords applied",
     "description": "Radiohead inspired diminished chords applied",
     "videoUrl": "https://cybrok3.github.io/posts/my_music/chill.mp4"
